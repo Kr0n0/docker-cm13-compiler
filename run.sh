@@ -6,8 +6,8 @@ SOURCE=$(readlink -f $(pwd)/android)
 CCACHE=$(readlink -f $(pwd)/ccache)
 CONTAINER_HOME=/home/cmbuild
 CONTAINER=cyanogenmod
-REPOSITORY=stucki/cyanogenmod
-TAG=cm-13.0
+REPOSITORY=case/android_builder
+TAG=latest
 FORCE_BUILD=0
 PRIVILEGED=
 
@@ -30,6 +30,8 @@ done
 # Create shared folders
 mkdir -p $SOURCE
 mkdir -p $CCACHE
+chown 1000:1000 $SOURCE
+chown 1000:1000 $CCACHE
 
 # Build image if needed
 IMAGE_EXISTS=$(docker images $REPOSITORY)

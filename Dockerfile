@@ -1,7 +1,8 @@
 # Build environment for CyanogenMod
+# Based on work by Michael Stucki (https://github.com/Kr0n0/docker-cyanogenmod)
 
 FROM ubuntu:14.04
-MAINTAINER Michael Stucki <mundaun@gmx.ch>
+MAINTAINER Carlos Crisostomo <carlos@caseonit.net>
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -30,6 +31,8 @@ RUN echo "cmbuild ALL=NOPASSWD: ALL" > /etc/sudoers.d/cmbuild
 
 ADD startup.sh /home/cmbuild/startup.sh
 RUN chmod a+x /home/cmbuild/startup.sh
+ADD build.sh /home/cmbuild/build.sh
+RUN chmod a+x /home/cmbuild/build.sh
 
 # Fix ownership
 RUN chown -R cmbuild:cmbuild /home/cmbuild
@@ -43,5 +46,9 @@ VOLUME /srv/ccache
 
 CMD /home/cmbuild/startup.sh
 
+RUN git config --global user.email "carlos@caseonit.net"
+RUN git config --global user.name "Carlos Crisostomo"
+
 USER cmbuild
 WORKDIR /home/cmbuild/android
+
