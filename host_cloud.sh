@@ -12,37 +12,23 @@
 
 # Almacenamiento
 SSD_EXT=/dev/sdb1
-DOCKER_PATH=$HOME/cyanogenmod
-SSD_EXT_MOUNT_PATH=$DOCKER_PATH/disk
-
-# Creamos estructura de carpetas 
-if [ ! -d "${SSD_EXT_MOUNT_PATH}" ]; then
-    mkdir ${SSD_EXT_MOUNT_PATH}
-fi
-if [ ! -d "${DOCKER_PATH}/android" ]; then
-    mkdir ${DOCKER_PATH}/android
-fi
-if [ ! -d "${DOCKER_PATH}/ccache" ]; then
-    mkdir ${DOCKER_PATH}/ccache
-fi
+SSD_MNT=/media/disk
 
 # Montamos el disco externo SSD donde están las fuentes localizadas
 if [ ! -b "${SSD_EXT}" ]; then
     echo "External disk not available"
     exit -1
 fi
+if [ ! -b "${SSD_MNT}" ]; then
+    mkdir ${SSD_MNT}
+fi
 
-sudo mount $SSD_EXT $SSD_EXT_MOUNT_PATH -o user,exec
-sudo chmod 777 $SSD_EXT_MOUNT_PATH
-
-# Enlazamos las rutas del disco correspondientes para las fuentes y el cache
-sudo mount -o bind $SSD_EXT_MOUNT_PATH/android $DOCKER_PATH/android
-sudo mount -o bind $SSD_EXT_MOUNT_PATH/ccache $DOCKER_PATH/ccache
+echo "Mounting ${SSD_EXT} into ${SSD_MNT}..."
+sudo mount ${SSD_EXT} ${SSD_MNT} -o user,exec
+sudo chmod 777 ${SSD_MNT}
 
 # Lanzamos la compilación
-cd $DOCKER_PATH && ./run.sh && sync
+cd $DOCKER_PATH && sudo ./run.sh && sync
 
 # Desmontamos disco
-sudo umount $DOCKER_PATH/android
-sudo umount $DOCKER_PATH/ccache
-sudo umount $SSD_EXT_MOUNT_PATH
+#sudo umount $SSD_MNT

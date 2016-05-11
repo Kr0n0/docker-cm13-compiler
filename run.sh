@@ -2,8 +2,10 @@
 
 cd $(dirname $0)
 
-SOURCE=$(readlink -f $(pwd)/android)
-CCACHE=$(readlink -f $(pwd)/ccache)
+#SOURCE=$(readlink -f $(pwd)/android)
+#CCACHE=$(readlink -f $(pwd)/ccache)
+SOURCE=/media/disk/android
+CCACHE=/media/disk/ccache
 CONTAINER_HOME=/home/cmbuild
 CONTAINER=cyanogenmod
 REPOSITORY=case/android_builder
@@ -66,7 +68,7 @@ if [[ $IS_RUNNING == "true" ]]; then
 elif [[ $IS_RUNNING == "false" ]]; then
 	docker start -i $CONTAINER
 else
-	docker run $PRIVILEGED -v $SOURCE:$CONTAINER_HOME/android -v $CCACHE:/srv/ccache -i -t --name $CONTAINER $REPOSITORY:$TAG
+	docker run $PRIVILEGED -v $SOURCE:$CONTAINER_HOME/android -v $CCACHE:/srv/ccache -i -t --name $CONTAINER $REPOSITORY:$TAG build.sh
 fi
 
 exit $?
