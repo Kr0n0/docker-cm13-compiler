@@ -13,6 +13,7 @@
 # Almacenamiento
 SSD_EXT=/dev/sdb1
 SSD_MNT=/media/disk
+DOCKER_PATH=$HOME/cyanogenmod
 
 # Montamos el disco externo SSD donde están las fuentes localizadas
 if [ ! -b "${SSD_EXT}" ]; then
