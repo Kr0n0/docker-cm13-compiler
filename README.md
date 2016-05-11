@@ -13,12 +13,12 @@ The main working directory is a shared folder on the host system, so the Docker 
 
 ### Cloud requisites
 
-**RAM** : 16GB RAM
-**CPUs** : 4 vCPU
-**DISK** : 
-    10GB (Host) - /dev/sda
-    100GB (External - EXT4 with 2 directories : android and ccache already created)  - /dev/sdb1
-**STARTUP SCRIPT** : git clone GITHUB_CLONE_URL $HOME/cyanogenmod && $HOME/cyanogenmod/host_cloud.sh
+* **RAM** : 16GB RAM
+* **CPUs** : 4 vCPU
+* **DISK** : 
+    * 10GB (Host) - /dev/sda
+    * 100GB (External - EXT4 with 2 directories : android and ccache already created)  - /dev/sdb1
+* **STARTUP SCRIPT** : git clone GITHUB_CLONE_URL $HOME/cyanogenmod && $HOME/cyanogenmod/host_cloud.sh
 
 
 ### How to run/build
