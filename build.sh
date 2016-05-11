@@ -1,4 +1,4 @@
-#!/bin/sh -e
+#!/bin/bash
 git config --global user.email "carlos@caseonit.net"
 git config --global user.name "Carlos Crisostomo"
 git config --global color.ui true
