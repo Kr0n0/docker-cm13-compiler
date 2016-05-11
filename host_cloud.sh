@@ -19,7 +19,7 @@ if [ ! -b "${SSD_EXT}" ]; then
     echo "External disk not available"
     exit -1
 fi
-if [ ! -b "${SSD_MNT}" ]; then
+if [ ! -d "${SSD_MNT}" ]; then
     mkdir ${SSD_MNT}
 fi
 
