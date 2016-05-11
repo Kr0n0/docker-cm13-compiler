@@ -1,8 +1,7 @@
-docker-cm13-compiler
+docker-cyanogenmod
 ==================
 
-Create a fully automated [Docker] based environment to build [CyanogenMod] under Google Cloud Platform (an any other Cloud Provider).
-Made as a fork from the original docker-cyanogenmod from [stucki] for compiling Nexus 5X CM13.
+Create a [Docker] based environment to build [CyanogenMod].
 
 This Dockerfile will create a docker container which is based on Ubuntu 14.04.
 It will install the "repo" utility and any other build dependencies which are required to compile CyanogenMod.
@@ -10,16 +9,6 @@ It will install the "repo" utility and any other build dependencies which are re
 The main working directory is a shared folder on the host system, so the Docker container can be removed at any time.
 
 **NOTE:** Remember that CyanogenMod is a huge project. It will consume a large amount of disk space (~80 GB) and it can easily take hours to build.
-
-### Cloud requisites
-
-**RAM** : 16GB RAM
-**CPUs** : 4 vCPU
-**DISK** : 
-    10GB (Host) - /dev/sda
-    100GB (External - EXT4 with 2 directories : android and ccache already created)  - /dev/sdb1
-**STARTUP SCRIPT** : git clone GITHUB_CLONE_URL $HOME/cyanogenmod && $HOME/cyanogenmod/host_cloud.sh
-
 
 ### How to run/build
 
@@ -54,7 +43,6 @@ brunch <device codename>      # example: brunch grouper
 
 For further information, check the following links:
 
-* [Original docker-cyanogenmod][stucki]
 * [CyanogenMod Building Basics][Cyanogenmod_Building_Basics]
 * [Learning to Build CyanogenMod][Learning_to_Build_CM]
 * [Build Instructions for Google Nexus 5][CyanogenMod_Build_Nexus5] (example device, search the wiki for other devices)
@@ -74,4 +62,3 @@ For further information, check the following links:
 [CyanogenMod_Build_Nexus5]:    http://wiki.cyanogenmod.org/w/Build_for_hammerhead
 [Discussion thread @ XDA developers]: http://forum.xda-developers.com/showthread.php?t=2650345
 [dotcloud/docker#2224]:        https://github.com/dotcloud/docker/issues/2224
-[stucki]:   https://github.com/stucki/docker-cyanogenmod
