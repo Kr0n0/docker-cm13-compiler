@@ -27,6 +27,10 @@ if [ ! -d "${DOCKER_PATH}/ccache" ]; then
 fi
 
 # Montamos el disco externo SSD donde están las fuentes localizadas
+if [ ! -b "${SSD_EXT}" ]; then
+    echo "External disk not available"
+    exit -1
+fi
 sudo mount $SSD_EXT $SSD_EXT_MOUNT_PATH -o user,exec
 sudo chmod 777 $SSD_EXT_MOUNT_PATH
 
