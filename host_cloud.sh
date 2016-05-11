@@ -4,7 +4,8 @@
 # 
 # v1.0 - Carlos Crisóstomo para Case On IT S.L. - 160511
 #
-# NOTA : El startup script es git clone https://github.com/Kr0n0/docker-cyanogenmod.git $HOME/cyanogenmod && $HOME/host.sh
+# NOTA : El startup script es 
+#       git clone https://github.com/Kr0n0/docker-cyanogenmod.git $HOME/cyanogenmod && $HOME/cyanogenmod/host_cloud.sh
 # 
 
 # Variables de entorno
@@ -13,6 +14,17 @@
 SSD_EXT=/dev/sdb1
 DOCKER_PATH=$HOME/cyanogenmod
 SSD_EXT_MOUNT_PATH=$DOCKER_PATH/disk
+
+# Creamos estructura de carpetas 
+if [ ! -d "${SSD_EXT_MOUNT_PATH}" ]; then
+    mkdir ${SSD_EXT_MOUNT_PATH}
+fi
+if [ ! -d "${DOCKER_PATH}/android" ]; then
+    mkdir ${DOCKER_PATH}/android
+fi
+if [ ! -d "${DOCKER_PATH}/ccache" ]; then
+    mkdir ${DOCKER_PATH}/ccache
+fi
 
 # Montamos el disco externo SSD donde están las fuentes localizadas
 sudo mount $SSD_EXT $SSD_EXT_MOUNT_PATH -o user,exec
