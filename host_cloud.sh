@@ -31,6 +31,7 @@ if [ ! -b "${SSD_EXT}" ]; then
     echo "External disk not available"
     exit -1
 fi
+
 sudo mount $SSD_EXT $SSD_EXT_MOUNT_PATH -o user,exec
 sudo chmod 777 $SSD_EXT_MOUNT_PATH
 
@@ -39,4 +40,9 @@ sudo mount -o bind $SSD_EXT_MOUNT_PATH/android $DOCKER_PATH/android
 sudo mount -o bind $SSD_EXT_MOUNT_PATH/ccache $DOCKER_PATH/ccache
 
 # Lanzamos la compilación
-cd $DOCKER_PATH && ./run.sh
+cd $DOCKER_PATH && ./run.sh && sync
+
+# Desmontamos disco
+sudo umount $DOCKER_PATH/android
+sudo umount $DOCKER_PATH/ccache
+sudo umount $SSD_EXT_MOUNT_PATH
